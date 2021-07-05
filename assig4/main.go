@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"log"
+	"io"
 	"os"
 )
 
@@ -22,11 +22,14 @@ func main() {
 		fmt.Println("Error occured while opening file: ",err)
 		os.Exit(1)
 	}
-	data := make([]byte, 100)
-	count, err := file.Read(data)
-	if err != nil {
-		log.Fatal(err)
-	}
-	fmt.Printf("read %d bytes: %q\n", count, data[:count])
+	// data := make([]byte, 100)
+	// count, err := file.Read(data)
+	// if err != nil {
+	// 	log.Fatal(err)
+	// }
+	// fmt.Printf("read %d bytes: %q\n", count, data[:count])
+
+	// second option which is sickkkkk
+	io.Copy(os.Stdout, file)
 	
 }
