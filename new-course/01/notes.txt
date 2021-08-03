@@ -40,3 +40,11 @@ method we can use curly brackets appended to the type and type out values -> n :
 concurrently. but we cannot communicate with them because we don't have means to do that. channels come into play
 in this situation. we pass the channel to the go routine and get the return value from that channel
 18. reading and writing json
+- typically when we call some api/external service, we receive data in structured format ie json and we cannot use it 
+right away, because it's just a string. but here is catch we have to define a struct for that received data. and mathc
+all keys with with keys of json data. then we can unmarshal that into our struct. to unmarshal json, we need a variable
+to store the unmarshalled data so we declare it beforehand. then using enconding/json pkg, we use json.Unmarshal() func
+it receives a byte as first argument and the variable to store it as second argument. btw, we give second value's 
+address instead of plain itself.
+- but how do we write json from struct. you guessed it right, we use json.Marshal() or we can use MarshalIndent
+to pretty print it
