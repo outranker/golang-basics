@@ -2,60 +2,37 @@ package main
 
 import (
 	"fmt"
-	"log"
 	"net/http"
+	urlshort "url-shortener/handler"
 )
 
-// task 1
-// - print path param
-// - if even redirect else no redirect
-// task 2
-// - open, parse, read yaml file
-// - save yaml to array of structs and loop through it once
-
-
 func main() {
+
+	mux := defaultMux()
+
+	pathsToUrls := map[string]string{
+		"/main":    "https://github.com/gophercises/urlshort/blob/master/main/main.go",
+		"/handler": "https://github.com/gophercises/urlshort/blob/master/handler.go",
+	}
+	mapHandler := urlshort.MapHandler(pathsToUrls, mux)
+
+	mux.HandleFunc("/some-route", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Println(r, "Hello, world!")
+		var a int = 1
+		fmt.Printf("GET SOME: %x", a)
+	})
+
+	fmt.Println("starting the server on :3005")
+	http.ListenAndServe(":3005", mapHandler)
+
+}
+
+func defaultMux() *http.ServeMux {
+
 	mux := http.NewServeMux()
-	rh := http.RedirectHandler("http://localhost:3005/hello", 307)
-
-	mux.Handle("/abc", rh)
-	mux.Handle("/hello", A)
-	log.Println("Listening at 3005")
-	http.ListenAndServe(":3005", mux)
-	
-	
+	mux.HandleFunc("/", hello)
+	return mux
 }
-func A(w http.ResponseWriter, req *http.Request) {
-	fmt.Fprintf(w, "This is the home page")
+
+func hello(w http.ResponseWriter, r *http.Request) {
 }
-// filePath := flag.String("file", "redirect.yaml", "file path name for the yaml file")
-// flag.Parse()
-// ParseYaml(filePath)
-
-// lines := make(map[string]string)
-// for _, m := range yml{
-// 	lines[m["path"]] = m["url"]
-// }
-
-// fmt.Println(lines)
-
-// helloHandler := func(w http.ResponseWriter, req *http.Request){
-// 	fmt.Println("this is url path param", req.URL.Path)
-// }
-// http.HandleFunc("/:value", helloHandler)
-// _ = http.ListenAndServe(":3005", nil )
-// http.ServeMux
-
-// func ParseYaml(filepath *string) []map[string]string {
-	
-// 	file, err := ioutil.ReadFile(*filepath)
-// 	if err != nil {
-// 		fmt.Println("Error opening file: ", err)
-// 	}
-// 	yml := []map[string]string{}
-// 	err = yaml.Unmarshal(file, &yml)
-// 	if err != nil {
-// 		fmt.Println("error unmarshalling yaml: ", err)
-// 	}
-// 	return yml
-// }
