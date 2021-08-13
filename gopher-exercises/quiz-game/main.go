@@ -100,7 +100,7 @@ func ReadCsvFile(path *string) [][]string {
 	
 	if err != nil {
 		log.Fatal("Error occured while opening file:  ", err)
-		os.Exit(1)
+		
 	}
 	
 	defer file.Close()

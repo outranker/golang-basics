@@ -17,9 +17,9 @@ func main() {
 	mapHandler := urlshort.MapHandler(pathsToUrls, mux)
 
 	mux.HandleFunc("/some-route", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Println(r, "Hello, world!")
+		// fmt.Println(r, "Hello, world!")
 		var a int = 1
-		fmt.Printf("GET SOME: %x", a)
+		fmt.Printf("GET SOME: %x\n", a)
 	})
 
 	fmt.Println("starting the server on :3005")
