@@ -20,3 +20,15 @@
 6. os package
    os.Args stores arguments in slice
    len() function is for slice length
+
+7. (10.) raw string literals
+   if string is between double quotes, it is string literals, if string is between backticks then it's raw string literals. raw string literals can
+   contain multiple lines of strings
+   string literals is interpreted. raw string literals are not interpreted
+
+8. (11.) len() function doesn't count how many characters in
+   string but counts the bytes. string literals are made of
+   code points aka runes and runes are made up of bytes so
+   each character can be 1 bytes or up to 4 bytes. since
+   len() function doesn't count how many characters in string, we need to use
+   some other package to count how many characters in string. unicode/utf8 package has RuneCountInString function and it returns the number of characters in string
