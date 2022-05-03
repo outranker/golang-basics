@@ -32,3 +32,20 @@
    each character can be 1 bytes or up to 4 bytes. since
    len() function doesn't count how many characters in string, we need to use
    some other package to count how many characters in string. unicode/utf8 package has RuneCountInString function and it returns the number of characters in string
+9. (14.) iota
+   iota is a built-in constant generator which generates ever increasing numbers
+   when constants are declared in batch we can use iota. it starts with 0 and increases by one
+   for succeeding constants. we can also use blank identifier to skip some values
+10. (17.) printf
+    we need to add \n for printf. it doesn't add new line like println
+    %s for string
+    %q for string, shows with quotes
+    %d for integer
+    %f for float -> %.0f means precision, %.1f, %.2f ...
+    %t for bool
+    %T for integer, float64, bool, string
+    %v for any value
+    there is some called argument indexing. imagine we have use multiple verbs in printf
+    but we only use 2 variables. for printf to work we have to provide equal number of verbs
+    but in this case since many verbs point to same variable we can use argument indexes to call them.
+    btw indexes start with 1, not with 0. keep that in mind
